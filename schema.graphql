@@ -1,0 +1,23 @@
+type Artist {
+    id: Int!
+    name: String!
+}
+
+type Query {
+    """
+    Finds an artist by id
+    """
+    artist(id: Int!): Artist
+
+    """
+    Finds artists with a matching name.
+
+    Supports \`%\` \`like\` syntax.
+    """
+    artistsByName(nameLike: String!): [Artist]
+
+    """
+    Returns all artists
+    """
+    artists: [Artist]
+}

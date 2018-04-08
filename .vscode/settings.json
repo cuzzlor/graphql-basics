@@ -1,4 +1,6 @@
 {
     "tslint.autoFixOnSave": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "mocha.files.glob": "./**/*spec.ts",
+    "mocha.requires": ["ts-node/register"]
 }
