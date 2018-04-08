@@ -2,9 +2,21 @@ import sqlite, { Database, Statement } from 'sqlite';
 import { v4 as uuid } from 'uuid';
 import lock from '../lock';
 import Artist from './model/Artist';
+import Track from './model/Track';
+import Album from './model/Album';
 
 export class ChinookService {
     private static readonly artistSelect = 'select ArtistId as id, Name as name from artists';
+    private static readonly albumSelect = 'select AlbumId as id, Title as title from albums';
+    private static readonly trackSelect = `
+        select 
+            TrackId as id, 
+            Name as name, 
+            Composer as composer, 
+            Milliseconds as milliseconds, 
+            Bytes as bytes, 
+            unitPrice as unitPrice 
+        from tracks`;
 
     private file: string;
     private lockId: string;
@@ -13,6 +25,42 @@ export class ChinookService {
     constructor(file: string) {
         this.file = file;
         this.lockId = uuid();
+    }
+
+    public async artist(id: number): Promise<Artist> {
+        return this.get<Artist>(`${ChinookService.artistSelect} where ArtistId = ?`, id);
+    }
+
+    public async artistsByName(nameLike: string): Promise<Artist[]> {
+        return this.all<Artist>(`${ChinookService.artistSelect} where Name like ? order by Name`, nameLike);
+    }
+
+    public async artists(): Promise<Artist[]> {
+        return this.all<Artist>(ChinookService.artistSelect);
+    }
+
+    public async album(id: number): Promise<Album[]> {
+        return this.all<Album>(`${ChinookService.albumSelect} where AlbumId = ?`, id);
+    }
+
+    public async albums(): Promise<Album[]> {
+        return this.all<Album>(ChinookService.albumSelect);
+    }
+
+    public async albumsByTitle(titleLike: string): Promise<Album[]> {
+        return this.all<Album>(`${ChinookService.albumSelect} where Title like ? order by Title`, titleLike);
+    }
+
+    public async albumsByArtist(artistId: number): Promise<Album[]> {
+        return this.all<Album>(`${ChinookService.albumSelect} where ArtistId = ? order by Title`, artistId);
+    }
+
+    public async tracksByAlbum(albumId: number): Promise<Track[]> {
+        return this.all<Track>(`${ChinookService.trackSelect} where AlbumId = ?`, albumId);
+    }
+
+    public async tracksByComposer(composerLike: string): Promise<Track[]> {
+        return this.all<Track>(`${ChinookService.trackSelect} where Composer like ? order by Name`, composerLike);
     }
 
     public async testConnection(): Promise<void> {
@@ -31,18 +79,6 @@ export class ChinookService {
 
             return (this.db = await sqlite.open(this.file));
         });
-    }
-
-    public async artist(id: number): Promise<Artist> {
-        return this.get<Artist>(`${ChinookService.artistSelect} where ArtistId = ?`, id);
-    }
-
-    public async artistsByName(nameLike: string): Promise<Artist[]> {
-        return this.all<Artist>(`${ChinookService.artistSelect} where Name like ? order by Name`, nameLike);
-    }
-
-    public async artists(): Promise<Artist[]> {
-        return this.all<Artist>(ChinookService.artistSelect);
     }
 
     private async get<T>(sql: string, ...params: any[]): Promise<T> {

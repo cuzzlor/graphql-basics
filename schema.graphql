@@ -1,6 +1,22 @@
 type Artist {
     id: Int!
     name: String!
+    albums: [Album]
+}
+
+type Album {
+    id: Int!
+    title: String!
+    tracks: [Track]
+}
+
+type Track {
+    id: Int!
+    name: String!
+    composer: String
+    milliseconds: Int
+    bytes: Int
+    unitPrice: Float
 }
 
 type Query {
