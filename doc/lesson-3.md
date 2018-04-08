@@ -198,7 +198,7 @@ npm install @types/mocha @types/chai @types/async-lock @types/uuid -D
 		 private static readonly artistSelect = 'select ArtistId as id, Name as name from artists';
 	```
 	
- 5. Add some data access methods to  `ChinookService.ts`
+ 5. Add some data access methods to  `ChinookService.ts` below the constructor
 	```ts
     public async artist(id: number): Promise<Artist> {
         return this.get<Artist>(`${ChinookService.artistSelect} where ArtistId = ?`, id);
