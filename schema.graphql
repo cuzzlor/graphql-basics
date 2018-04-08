@@ -36,4 +36,28 @@ type Query {
     Returns all artists
     """
     artists: [Artist]
+
+    """
+    Returns all albums
+    """
+    albums: [Album]
+
+    """
+    Finds an album by id
+    """
+    album(id: Int!): Album
+
+    """
+    Finds albums with a matching title.
+
+    Supports \`%\` \`like\` syntax.
+    """
+    albumsByTitle(titleLike: String!): [Album]
+
+    """
+    Finds tracks with a matching composer.
+
+    Supports \`%\` \`like\` syntax.
+    """
+    tracksByComposer(composerLike: String!): [Track]
 }
