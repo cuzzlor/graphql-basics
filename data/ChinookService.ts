@@ -15,6 +15,18 @@ export class ChinookService {
         this.lockId = uuid();
     }
 
+    public async artist(id: number): Promise<Artist> {
+        return this.get<Artist>(`${ChinookService.artistSelect} where ArtistId = ?`, id);
+    }
+
+    public async artistsByName(nameLike: string): Promise<Artist[]> {
+        return this.all<Artist>(`${ChinookService.artistSelect} where Name like ? order by Name`, nameLike);
+    }
+
+    public async artists(): Promise<Artist[]> {
+        return this.all<Artist>(ChinookService.artistSelect);
+    }
+
     public async testConnection(): Promise<void> {
         await this.database();
     }
@@ -31,18 +43,6 @@ export class ChinookService {
 
             return (this.db = await sqlite.open(this.file));
         });
-    }
-
-    public async artist(id: number): Promise<Artist> {
-        return this.get<Artist>(`${ChinookService.artistSelect} where ArtistId = ?`, id);
-    }
-
-    public async artistsByName(nameLike: string): Promise<Artist[]> {
-        return this.all<Artist>(`${ChinookService.artistSelect} where Name like ? order by Name`, nameLike);
-    }
-
-    public async artists(): Promise<Artist[]> {
-        return this.all<Artist>(ChinookService.artistSelect);
     }
 
     private async get<T>(sql: string, ...params: any[]): Promise<T> {
