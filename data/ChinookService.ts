@@ -64,4 +64,9 @@ export class ChinookService {
         const statement = await database.run(sql, params);
         return statement;
     }
+
+    private async prepare(sql: string, ...params: any[]): Promise<Statement> {
+        const database = await this.database();
+        return database.prepare(sql, params);
+    }
 }
