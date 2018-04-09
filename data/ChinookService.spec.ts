@@ -72,4 +72,11 @@ describe('ChinookService', () => {
             console.log(albums);
         });
     });
+
+    describe('#insertArtist', () => {
+        it('should create a single artist', async () => {
+            const artist = await new ChinookService(databaseFile).insertArtist('The Dirty Floors');
+            console.log(artist);
+        });
+    });
 });

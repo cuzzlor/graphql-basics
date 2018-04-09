@@ -23,4 +23,7 @@ export const resolvers: any = {
     Album: {
         tracks: async (source: Album) => chinookService.tracksByAlbum(source.id),
     },
+    Mutation: {
+        createArtist: async (source: any, { name }: { name: string }) => chinookService.insertArtist(name),
+    },
 };

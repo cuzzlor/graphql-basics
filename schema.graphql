@@ -61,3 +61,7 @@ type Query {
     """
     tracksByComposer(composerLike: String!): [Track]
 }
+
+type Mutation {
+    createArtist(name: String!): Artist
+}

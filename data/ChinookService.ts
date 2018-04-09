@@ -63,6 +63,15 @@ export class ChinookService {
         return this.all<Track>(`${ChinookService.trackSelect} where Composer like ? order by Name`, composerLike);
     }
 
+    public async insertArtist(name: string): Promise<Artist> {
+        const statement = await this.run('insert into Artists (Name) values (?)', name);
+        return {
+            id: statement.lastID,
+            name,
+            albums: [],
+        };
+    }
+
     public async testConnection(): Promise<void> {
         await this.database();
     }
