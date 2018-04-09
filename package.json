@@ -31,8 +31,9 @@
         "@types/uuid": "^3.4.3"
     },
     "scripts": {
-        "debug": "nodemon --inspect=9229 --ext ts,json --ignore ['**/*.spec.ts'] -r ts-node/register ./app.ts",
-        "debug-brk": "nodemon --inspect-brk=9229 --ext ts,json --ignore ['**/*.spec.ts'] -r ts-node/register ./app.ts",
+        "debug": "nodemon --inspect=9229 --ext ts,json,graphql --ignore ['**/*.spec.ts'] -r ts-node/register ./app.ts",
+        "debug-brk":
+            "nodemon --inspect-brk=9229 --ext ts,json,graphql --ignore ['**/*.spec.ts'] -r ts-node/register ./app.ts",
         "test": "node ./node_modules/mocha/bin/_mocha -r ts-node/register **/*.spec.ts",
         "murder-node": "taskkill /f /im node.exe"
     },
