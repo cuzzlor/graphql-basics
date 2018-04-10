@@ -1,6 +1,6 @@
-# Graphql Intro
+# GraphQL Basics
 
-We will be building a [GraphQL](http://graphql.org/) API in Typescript using the SQLite chinook sample database using (amongst others):
+In this workshop you'll build a [GraphQL](http://graphql.org/) API in Typescript using the SQLite chinook sample database using the following librarys (amongst others):
 
 * [Node](https://nodejs.org) (runtime)
 * [Express](https://expressjs.com/) (web server)
@@ -12,7 +12,7 @@ We will be building a [GraphQL](http://graphql.org/) API in Typescript using the
 
 ## Prerequisites
 
-Make sure you're set up with the following before starting the workshop.
+Make sure you're set up before starting the workshop:
 
 1.  Recent version of [NodeJS](https://nodejs.org/en/download/)
 2.  Up to date [VS Code](https://code.visualstudio.com/download)
@@ -23,7 +23,7 @@ Make sure you're set up with the following before starting the workshop.
 
 ## Workshop Structure
 
-The workshop is split into 4 lessons which should take around 20 mins each if you copy and paste code into place and do some reading / thinking / playing along the way.
+The workshop is split into 4 lessons which should take around 20-30 mins each if you copy and paste code into place and do some reading / thinking / playing along the way.
 
 Branches have been created to capture the completed code at the end of each workshop, and at the end of each step in lesson 4.
 
@@ -37,7 +37,7 @@ git checkout lesson2 -f
 
 _You may need to also run an `npm install` after switching branches._
 
-**Note: The workshop doc is only included in the master branch, so I suggest reading from the repo rather than from local files.**
+**Note: The workshop doc is only included in the master branch, so I suggest reading from the hosted repo rather than from local files.**
 
 ## Lessons
 
