@@ -39,16 +39,9 @@ _You may need to also run an `npm install` after switching branches._
 
 **Note: The workshop doc is only included in the master branch, so I suggest reading from the hosted repo rather than from local files.**
 
-## Lessons
-
-* [# 1 - Project Setup & Express Hello World](doc/lesson-1.md)
-* [# 2 - GraphQL Hello World](doc/lesson-2.md)
-* [# 3 - Add SQLite to GraphQL API](doc/lesson-3.md)
-* [# 4 - Add Albums, Tracks and a Mutation](doc/lesson-4.md)
-
 ## Branches
 
-To jump to the complete code for any lesson, switch to the corresponding branch:
+If you have problems or need to jump ahead, checkout the complete code for any lesson via the corresponding branch:
 
 * lesson1
 * lesson2
@@ -63,3 +56,22 @@ e.g.
 ```
 git checkout lesson2 -f
 ```
+
+## Getting Started
+
+1.  Start from scratch, in the almost-empty\* master branch:
+
+    ```
+    git checkout master
+    ```
+
+    \*_master has a `.gitignore` and `package.json`_
+
+2.  Follow the links to [lesson 1](doc/lesson1.md) and start writing code!
+
+## Lessons
+
+* [# 1 - Project Setup & Express Hello World](doc/lesson-1.md)
+* [# 2 - GraphQL Hello World](doc/lesson-2.md)
+* [# 3 - Add SQLite to GraphQL API](doc/lesson-3.md)
+* [# 4 - Add Albums, Tracks and a Mutation](doc/lesson-4.md)
