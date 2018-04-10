@@ -19,6 +19,14 @@ type Track {
     unitPrice: Float
 }
 
+input TrackInput {
+    name: String!
+    composer: String
+    milliseconds: Int
+    bytes: Int
+    unitPrice: Float
+}
+
 type Query {
     """
     Finds an artist by id
@@ -64,4 +72,5 @@ type Query {
 
 type Mutation {
     createArtist(name: String!): Artist
+    createAlbum(artistId: Int!, title: String!, tracks: [TrackInput]): Album
 }

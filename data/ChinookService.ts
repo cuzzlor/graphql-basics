@@ -72,6 +72,40 @@ export class ChinookService {
         };
     }
 
+    public async insertAlbum(artistId: number, title: string, tracks: Track[]): Promise<Album> {
+        const albumInsertStatement = await this.run(
+            'insert into Albums (Title, ArtistId) values (?, ?)',
+            title,
+            artistId,
+        );
+        const album: Album = {
+            id: albumInsertStatement.lastID,
+            title,
+            tracks,
+        };
+
+        const trackInsertStatement = await this.prepare(
+            'insert into Tracks (AlbumId, Name, Composer, Milliseconds, Bytes, UnitPrice, MediaTypeId) values (?, ?, ?, ?, ?, ?, ?)',
+        );
+
+        await Promise.all(
+            tracks.map(async track => {
+                const statement = await trackInsertStatement.run(
+                    album.id,
+                    track.name,
+                    track.composer,
+                    track.milliseconds,
+                    track.bytes,
+                    track.unitPrice,
+                    5, // <<< 'AAC Audio File'
+                );
+                track.id = statement.lastID;
+            }),
+        );
+
+        return album;
+    }
+
     public async testConnection(): Promise<void> {
         await this.database();
     }
@@ -108,5 +142,10 @@ export class ChinookService {
         const database = await this.database();
         const statement = await database.run(sql, params);
         return statement;
+    }
+
+    private async prepare(sql: string, ...params: any[]): Promise<Statement> {
+        const database = await this.database();
+        return database.prepare(sql, params);
     }
 }

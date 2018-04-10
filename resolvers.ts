@@ -1,6 +1,7 @@
 import { ChinookService } from './data/ChinookService';
 import Artist from './data/model/Artist';
 import Album from './data/model/Album';
+import Track from './data/model/Track';
 
 const chinookService = new ChinookService('./data/db/chinook.db');
 
@@ -25,5 +26,9 @@ export const resolvers: any = {
     },
     Mutation: {
         createArtist: async (source: any, { name }: { name: string }) => chinookService.insertArtist(name),
+        createAlbum: async (
+            source: any,
+            { artistId, title, tracks }: { artistId: number; title: string; tracks: Track[] },
+        ) => chinookService.insertAlbum(artistId, title, tracks),
     },
 };
