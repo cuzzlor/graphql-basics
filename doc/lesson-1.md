@@ -194,11 +194,11 @@ Run the app via A or B below:
 
 ### A) Run via the `debug` launch config
 
-> From the VS Code debug tab, run the **debug** launch configuration.
+From the VS Code debug tab, run the **debug** launch configuration.
 
 > ✔ Experiment setting a breakpoint inside the middleware at `res.send('Hello World!');`
 
-#### Notes the interaction between the debugger and nodemon
+#### Notes on the interaction between the debugger and nodemon
 
 * Nodemon will restart the process when `.ts`, `.json` or `.graphql` files are changed.
 * You must kill the terminal manually (rubbish bin icon or Ctrl+C etc) if you press stop on the debugger, as the nodemon process will keep running waiting for changed files. https://github.com/Microsoft/vscode/issues/19203
