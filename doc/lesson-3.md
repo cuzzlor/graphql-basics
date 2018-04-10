@@ -4,7 +4,7 @@ In this lesson, you'll build a sqlite service for the chinook sample database, a
 
 We will also split the contents of `app.ts` into separate schema and resolver map files.
 
-**Note**: to skip downloading of the database file and diagram, run: `git checkout lesson3-start` before starting.
+**Note**: to skip downloading of the database file and diagram, run: `git checkout lesson3-start -f` before starting.
 
 ## Step 1 - Add sqlite, mocha and chai packages and types
 
