@@ -154,6 +154,7 @@ _Skip this step if you've already checked out the `lesson3-start` branch._
 3.  Open the MOCHA sidebar at the bottom of the EXPLORER tab and press play.
 
     > ✔ Tests should automatically load and run in the background and show green or red as you code them.
+
     > ✔ Pass / fail count should show on the status bar
 
 ## Step 5 - Map Artists and add to the GraphQL API
@@ -315,4 +316,7 @@ _Skip this step if you've already checked out the `lesson3-start` branch._
 ### Review Time
 
 > ✔ What we have built is OK but quite boring, almost the equivalent of a restful API.
+
 > ✔ GraphQL will really start to shine when we expand our object graph in Lesson 4...
+
+## Next : [Lesson # 4 - Add Albums, Tracks and a Mutation](doc/lesson-4.md)
