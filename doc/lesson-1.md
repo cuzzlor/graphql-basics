@@ -217,4 +217,4 @@ npm run debug
 
 > From the VS Code debug tab, run the **attach** launch configuration.
 
-## Next : [Lesson # 2 - GraphQL Hello World](doc/lesson-2.md)
+## Next : [Lesson # 2 - GraphQL Hello World](lesson-2.md)

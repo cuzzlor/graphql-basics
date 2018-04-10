@@ -319,4 +319,4 @@ _Skip this step if you've already checked out the `lesson3-start` branch._
 
 > ✔ GraphQL will really start to shine when we expand our object graph in Lesson 4...
 
-## Next : [Lesson # 4 - Add Albums, Tracks and a Mutation](doc/lesson-4.md)
+## Next : [Lesson # 4 - Add Albums, Tracks and a Mutation](lesson-4.md)

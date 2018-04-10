@@ -316,4 +316,4 @@ This generates a request body which includes both `query` (SDL string) and `vari
 }
 ```
 
-## Next : [Lesson # 3 - Add SQLite to GraphQL API](doc/lesson-3.md)
+## Next : [Lesson # 3 - Add SQLite to GraphQL API](lesson-3.md)
