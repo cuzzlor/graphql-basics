@@ -1,0 +1,15 @@
+query ArtistAlbumsTracks($artistId: Int!) {
+    artist(id: $artistId) {
+        name
+        albums {
+            title
+            tracks {
+                name
+                composer
+                milliseconds
+                bytes
+                unitPrice
+            }
+        }
+    }
+}

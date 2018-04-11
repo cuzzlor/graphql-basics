@@ -7,6 +7,22 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "debug client app",
+            "runtimeArgs": [
+                "--inspect-brk=9220",
+                "--nolazy",
+                "-r",
+                "ts-node/register",
+                "${workspaceFolder}/client/app.ts"
+            ],
+            "cwd": "${workspaceFolder}/client",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "port": 9220
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "debug",
             "runtimeExecutable": "npm",
             "runtimeArgs": ["run-script", "debug-brk"],
