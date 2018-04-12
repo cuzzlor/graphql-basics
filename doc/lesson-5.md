@@ -1,5 +1,3 @@
-
-
 # Lesson # 5 - Consuming GraphQL
 
 ## React, Relay, Connections...
@@ -16,15 +14,15 @@ The third _thing_ graphql supports, in addition to **queries** and **mutations**
 
 Apollo has an [comprehensive tutorial](https://dev-blog.apollodata.com/tutorial-graphql-subscriptions-server-side-e51c32dc2951) on these subjects if you want to learn more.
 
-## Old School HTTP
+## HTTP Clients
 
-Let's get back to basics...
+Let's get back to the basics...
 
 ### Step # 1 - Static Query
 
 For more traditional consumption, it's simply a case of request and response with JSON payloads. You don't need to use or write any special client to call graphql endpoints, but let's write one anyway.
 
-1.  We'll use `axios` for as our HTTP client.
+1.  We'll use `axios` as our HTTP client.
 
     ```
     npm install axios -s
@@ -51,10 +49,7 @@ For more traditional consumption, it's simply a case of request and response wit
       ): Promise<T> {
         return axios
           .post(this.url, { query, variables })
-          .then(response => response.data as T)
-          .catch(error => {
-            throw error;
-          });
+          .then(response => response.data as T);
       }
     }
     ```
@@ -167,33 +162,54 @@ For more traditional consumption, it's simply a case of request and response wit
 
 ### Step # 3 - Use [Apollo GraphQL code generator](https://github.com/apollographql/apollo-codegen) to generate types
 
-It makes sense that in a Typescript app we'd want to type the query input and output. right? 
+It makes sense that in a Typescript app we'd want to type the query input and output. right?
 
-How can we do this  when we declare our return type differently for every query? Make everything nullable?
+How can we do this when we declare our return type differently for every query? Should we just create a superset return type and make everything nullable?
 
-**No!** We can use the apollo-codegen package to generate types based on the schema and our query.  Both are parseable and well defined.
+Ummm, no, we can use the apollo-codegen package to generate types based on the schema and our query - both are parseable and well defined.
 
- 1. Introspect and download the remote schema to a local file.
+1.  Install apollo-codegen
 
-	```
-	apollo-codegen introspect-schema http://localhost:3000/graphql --output client/schema.json
-	```
+    ```
+    npm install apollo-codegen -D
+    ```
 
- 2. Generate input and output types, based in your query and the downloaded schema.
+2.  Introspect and download the remote schema to a local file.
 
-	```
-	apollo-codegen generate client/queries/artist-albums-tracks.graphql --schema client/schema.json --target typescript --output client/types/artist-albums-tracks.ts
-	```
+    ```
+    .\node_modules\.bin\apollo-codegen introspect-schema http://localhost:3000/graphql --output client/schema.json
+    ```
 
-3. Change your code to use the input and output types.
+3.  Create a directory for generated types: `client/types`
 
-	```ts
-	dataService
-	  .query<ArtistAlbumsTracksQuery, ArtistAlbumsTracksQueryVariables>(
-		  fs.readFileSync("queries/artist-albums-tracks.graphql", "utf8"),
-		  {
-		    artistId: 1
-		  })
-	```
+    e.g.
+
+    ```
+    mkdir client/types
+    ```
+
+4.  Generate input and output types, based on your query and the downloaded schema.
+
+    ```
+    .\node_modules\.bin\apollo-codegen generate client/queries/artist-albums-tracks.graphql --schema client/schema.json --target typescript --output client/types/artist-albums-tracks.ts
+    ```
+
+5.  Change your code to use the input and output types. The types are named according to your query name: `[query-name]Query` for output, and `[query-name]QueryVariables` for input.
+
+    ```ts
+    dataService
+      .query<ArtistAlbumsTracksQuery,ArtistAlbumsTracksQueryVariables>(
+          fs.readFileSync("queries/artist-albums-tracks.graphql", "utf8"), {
+            artistId: 1
+          });
+    ```
+
+6.  Import those types, run your updated client. The output should be the same, but you now have an output type definition to use throughout your client plus intellisense on the input!
 
 > ✔ Go forth and reap the benefits of type definitions without having to write them!
+
+## The End
+
+That concludes the final lesson in this tutorial, I hope it helped gain an understanding of the basics of building a GraphQL API.
+
+Please feel free to provide feedback or contribute via a pull request.
