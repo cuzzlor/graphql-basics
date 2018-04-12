@@ -50,6 +50,8 @@ If you have problems or need to jump ahead, checkout the complete code for any l
 * lesson4-step1
 * lesson4-step2
 * lesson4-step3
+* lesson4-step4
+* lesson5
 
 e.g.
 
@@ -75,3 +77,5 @@ git checkout lesson2 -f
 * [# 2 - GraphQL Hello World](doc/lesson-2.md)
 * [# 3 - Add SQLite to GraphQL API](doc/lesson-3.md)
 * [# 4 - Add Albums, Tracks and a Mutation](doc/lesson-4.md)
+* [# 5 - Consuming GraphQL](doc/lesson-5.md)
+
