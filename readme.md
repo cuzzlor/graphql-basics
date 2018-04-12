@@ -23,7 +23,7 @@ Make sure you're set up before starting the workshop:
 
 ## Workshop Structure
 
-The workshop is split into 4 lessons which should take around 20-30 mins each if you copy and paste code into place and do some reading / thinking / playing along the way.
+The workshop is split into 5 lessons which should take around 20-30 mins each if you copy and paste code into place and do some reading / thinking / playing along the way.
 
 Branches have been created to capture the completed code at the end of each workshop, and at the end of each step in lesson 4.
 
