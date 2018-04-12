@@ -473,4 +473,17 @@ mutation($artistId: Int!, $title: String!, $tracks: [TrackInput]) {
 }
 ```
 
+
+### Review Time
+
+We really built a lot in this lesson.
+
+> ✔ Added resolvers between entities using the source (parent object) argument.
+
+> ✔ Added a reasonably complex mutation function.
+
+> ✔ Used a parameterised query to safely and easily specify input variables.
+
+That's it for the server-side for now. Next we'll look at graphql from a consumer point of view.
+
 ## Next : [Lesson # 5 - Consuming GraphQL](lesson-5.md)
