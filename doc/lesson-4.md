@@ -472,3 +472,5 @@ mutation($artistId: Int!, $title: String!, $tracks: [TrackInput]) {
   ]
 }
 ```
+
+## Next : [Lesson # 5 - Consuming GraphQL](lesson-5.md)
