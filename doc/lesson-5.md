@@ -1,3 +1,5 @@
+
+
 # Lesson # 5 - Consuming GraphQL
 
 ## React, Relay, Connections...
@@ -15,6 +17,8 @@ The third _thing_ graphql supports, in addition to **queries** and **mutations**
 Apollo has an [comprehensive tutorial](https://dev-blog.apollodata.com/tutorial-graphql-subscriptions-server-side-e51c32dc2951) on these subjects if you want to learn more.
 
 ## Old School HTTP
+
+Let's get back to basics...
 
 ### Step # 1 - Static Query
 
@@ -113,15 +117,15 @@ For more traditional consumption, it's simply a case of request and response wit
 1.  First run your graphql API via the `debug` launch config.
 2.  Then run your client app via the `debug client app` launch config.
 
-> ✔ You should see console data output as you'd expect:
+> ✔ You should see console output as you'd expect:
 
-```json
+```
 { data: { artist: { name: "AC/DC", albums: [Array] } } }
 ```
 
 ### Step # 2 - Parameterised Query
 
-1.  Change your query to a named, paramaterised query in a file:
+1.  Change your query to a named and paramaterised query, in a file:
 
     `client/queries/artist-albums-tracks.graphql`
 
@@ -161,9 +165,35 @@ For more traditional consumption, it's simply a case of request and response wit
 
 3.  Run your updated client, the output should be the same.
 
-### Step # 3 - Use [Apollo GraphQL code generator](https://github.com/apollographql/apollo-codegen)
+### Step # 3 - Use [Apollo GraphQL code generator](https://github.com/apollographql/apollo-codegen) to generate types
 
-```
-apollo-codegen introspect-schema http://localhost:3000/graphql --output schema.json
-apollo-codegen generate artist-albums-tracks.graphql --schema schema.json --target typescript --output types/artist-albums-tracks.ts
-```
+It makes sense that in a Typescript app we'd want to type the query input and output. right? 
+
+How can we do this  when we declare our return type differently for every query? Make everything nullable?
+
+**No!** We can use the apollo-codegen package to generate types based on the schema and our query.  Both are parseable and well defined.
+
+ 1. Introspect and download the remote schema to a local file.
+
+	```
+	apollo-codegen introspect-schema http://localhost:3000/graphql --output client/schema.json
+	```
+
+ 2. Generate input and output types, based in your query and the downloaded schema.
+
+	```
+	apollo-codegen generate client/queries/artist-albums-tracks.graphql --schema client/schema.json --target typescript --output client/types/artist-albums-tracks.ts
+	```
+
+3. Change your code to use the input and output types.
+
+	```ts
+	dataService
+	  .query<ArtistAlbumsTracksQuery, ArtistAlbumsTracksQueryVariables>(
+		  fs.readFileSync("queries/artist-albums-tracks.graphql", "utf8"),
+		  {
+		    artistId: 1
+		  })
+	```
+
+> ✔ Go forth and reap the benefits of type definitions without having to write them!
