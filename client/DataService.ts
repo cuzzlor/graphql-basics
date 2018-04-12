@@ -8,11 +8,6 @@ export default class DataService {
     }
 
     public async query<T, TVariables>(query: string, variables?: TVariables): Promise<T> {
-        return axios
-            .post(this.url, { query, variables })
-            .then(response => response.data as T)
-            .catch(error => {
-                throw error;
-            });
+        return axios.post(this.url, { query, variables }).then(response => response.data as T);
     }
 }
