@@ -6,7 +6,7 @@ There's a whole world of graphql stuff based around supporting next-gen fancy Re
 
 ### Relay
 
-[Relay](https://github.com/graphql/graphql-relay-js) is a graphql client framework for React apps. The use of Relay also has [server-side implications](https://dev-blog.apollodata.com/explaining-graphql-connections-c48b7c3d6976) - it's a whole 'nother world, out of the scope of this 'basics' workshop.
+[Relay](https://github.com/graphql/graphql-relay-js) is a graphql client framework for React apps. The use of Relay also has [server-side implications](https://dev-blog.apollodata.com/explaining-graphql-connections-c48b7c3d6976) around how you design and implement your schema (connections, nodes, edges) - it's out of the scope of this 'basics' workshop.
 
 ### Subscriptions
 
