@@ -69,7 +69,7 @@ git checkout lesson2 -f
 
     \*_master has a `.gitignore` and `package.json`_
 
-2.  Follow the links to [lesson 1](doc/lesson1.md) and start writing code!
+2.  Follow the links to [lesson 1](doc/lesson-1.md) and start writing code!
 
 ## Lessons
 
