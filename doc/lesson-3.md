@@ -101,11 +101,6 @@ _Skip this step if you've already checked out the `lesson3-start` branch._
         const database = await this.database();
         return database.prepare(sql, params);
       }
-
-      private async prepare(sql: string, ...params: any[]): Promise<Statement> {
-        const database = await this.database();
-        return database.prepare(sql, params);
-      }
     }
     ```
 
